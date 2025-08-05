@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FundRaiseNow</title>
+  <link rel="stylesheet" href="ls.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>FundRaiseNow</header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="images.jpeg" alt="">
+    <h1>Together, We Can Make a Difference</h1>
+    <h2>Support Dreams, Change Lives</h2>
+    <button id="startFundBtn">Start Fundraising</button>
+  </section>
+
+  <!-- Modal Form -->
+  <div id="registrationModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+      <h3>Your Details</h3>
+      <form id="registerForm">
+        <label>Your Name:</label>
+        <input type="text" id="name" placeholder="Full Name" required>
+
+        <label>I am raising funds for:</label>
+        <select id="fundFor">
+          <option>Internship</option>
+          <option>Education</option>
+          <option>Travel</option>
+          <option>Other</option>
+        </select>
+
+        <label>The raised funds will help:</label>
+        <select id="helpFor">
+          <option>Myself</option>
+          <option>Someone Else</option>
+        </select>
+
+        <label>Mobile Number:</label>
+        <input type="tel" id="mobile" placeholder="e.g. 9876543210" required>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Static Sections -->
+  <section class="container">
+    <section id="stu">
+      <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d" width="300">
+      <div>
+        <h3>Help a Student Achieve Dreams</h3>
+        <p>Support a bright student in covering internship expenses, tuition fees, and necessary resources. Your contribution can change a life and help build a brighter future.</p>
+      </div>
+    </section>
+
+    <section id="med">
+      <img src="https://media.istockphoto.com/id/1988844230/photo/paediatric-medical-check-up.webp?s=1024x1024&w=is&k=20&c=5JB0Gd_iAc-jFFdo4O1lweabUS5ObQYenbFh4BAm4yI=" width="300">
+      <div>
+        <h3>Medical Aid for a Family</h3>
+        <p>Join hands in helping a family facing urgent medical expenses. Funds will go toward hospital bills, medicines, and recovery support.</p>
+      </div>
+    </section>
+
+    <section id="tra">
+      <img src="https://as2.ftcdn.net/jpg/00/65/48/25/1000_F_65482539_C0ZozE5gUjCafz7Xq98WB4dW6LAhqKfs.webp" width="300">
+      <div>
+        <h3>Travel to Opportunity</h3>
+        <p>Empower an individual to attend a life-changing internship or educational opportunity abroad or in another city. Help them reach their destination of success.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- Firebase + Form JS -->
+  <script type="module">
+    // Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAK7LnoVb-bd164C4qp9AatgXNn9umB3dk",
+      authDomain: "fundraise-aed0c.firebaseapp.com",
+      projectId: "fundraise-aed0c",
+      storageBucket: "fundraise-aed0c.appspot.com",
+      messagingSenderId: "396650300704",
+      appId: "1:396650300704:web:0f03ff102be69deba38345",
+      measurementId: "G-H6CTQ66QGW"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Modal Handling
+    const openBtn = document.getElementById('startFundBtn');
+    const modal = document.getElementById('registrationModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    openBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Form submission
+    const form = document.getElementById('registerForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const fundFor = document.getElementById('fundFor').value;
+      const helpFor = document.getElementById('helpFor').value;
+      const mobile = document.getElementById('mobile').value;
+
+      try {
+        await addDoc(collection(db, "registrations"), {
+          name,
+          fundFor,
+          helpFor,
+          mobile,
+          timestamp: new Date()
+        });
+        alert("Registration submitted successfully!");
+        form.reset();
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        console.error("Error saving data: ", error);
+        alert("Error saving data. Please try again.");
+      }
+    });
+  </script>
+
+</body>
+</html>

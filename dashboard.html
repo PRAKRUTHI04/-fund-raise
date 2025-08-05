@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intern Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar expanded" id="sidebar">
+      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+      <h2 class="sidebar-title">Donations</h2>
+      <ul>
+        <li onclick="location.href='education-orgs.html'"><i class="fas fa-book"></i><span>Education</span></li>
+        <li onclick="location.href='medical-orgs.html'"><i class="fas fa-stethoscope"></i><span>Medical</span></li>
+        <li onclick="location.href='travel-orgs.html'"><i class="fas fa-plane"></i><span>Travel</span></li>
+        <li onclick="location.href='internship-orgs.html'"><i class="fas fa-briefcase"></i><span>Internship</span></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="content">
+      <!-- Top Navbar -->
+      <header class="navbar pine">
+        <div class="site-name">FundRaiseNow</div>
+        <div class="admin-menu">
+          
+            <a href="ls.html" style="color: black;">Logout</a>
+          
+        </div>
+      </header>
+
+      <!-- Dashboard Body -->
+      <section class="dashboard">
+        <div class="dashboard-header">
+          <div class="intern-info">
+            <h1>Welcome, Donator</h1>
+            <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
+            <p><strong>Referral Code:</strong> <span id="ref-code">Loading...</span></p>
+            <p><strong>Total Donations:</strong> ₹<span id="donations">0</span></p>
+          </div>
+
+          <div class="rewards">
+            <h2>🏆 Rewards</h2>
+            <ul>
+              <li>₹5000 - Bronze Badge</li>
+              <li>₹10000 - Silver Badge</li>
+              <li>₹25000 - Gold Badge</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Updated donation card layout -->
+<div class="donation-section">
+  <h2>🍇 Make a Donation</h2>
+  <p class="donation-desc">
+    Your donation helps provide essential services and support to those in need. Whether it's education, healthcare, or travel for opportunity, every rupee counts!
+  </p>
+
+  <div class="donation-cards">
+    <div class="donation-card">
+      <h3><i class="fas fa-book"></i> Education</h3>
+      <label for="org-edu">Choose Organization:</label>
+      <select id="org-edu">
+        <option>TeachForIndia</option>
+        <option>Shiksha Foundation</option>
+      </select>
+
+      <label for="amt-edu">Select Amount:</label>
+      <select id="amt-edu">
+        <option>₹500</option>
+        <option>₹1000</option>
+        <option>₹1500</option>
+        <option>₹2000</option>
+        <option>₹2500</option>
+      </select>
+
+      <button class="donate-btn">Donate</button>
+      <a class="org-link" href="education-orgs.html">About Organizations</a>
+    </div>
+
+    <div class="donation-card">
+      <h3><i class="fas fa-stethoscope"></i> Medical</h3>
+      <label for="org-med">Choose Organization:</label>
+      <select id="org-med">
+        <option>Red Cross</option>
+        <option>HealthLine</option>
+      </select>
+
+      <label for="amt-med">Select Amount:</label>
+      <select id="amt-med">
+        <option>₹500</option>
+        <option>₹1000</option>
+        <option>₹1500</option>
+        <option>₹2000</option>
+        <option>₹2500</option>
+      </select>
+
+      <button class="donate-btn">Donate</button>
+      <a class="org-link" href="medical-orgs.html">About Organizations</a>
+    </div>
+
+    <div class="donation-card">
+      <h3><i class="fas fa-plane"></i> Travel</h3>
+      <label for="org-travel">Choose Organization:</label>
+      <select id="org-travel">
+        <option>Global Youth</option>
+        <option>Mission Explore</option>
+      </select>
+
+      <label for="amt-travel">Select Amount:</label>
+      <select id="amt-travel">
+        <option>₹500</option>
+        <option>₹1000</option>
+        <option>₹1500</option>
+        <option>₹2000</option>
+        <option>₹2500</option>
+      </select>
+
+      <button class="donate-btn">Donate</button>
+      <a class="org-link" href="travel-orgs.html">About Organizations</a>
+    </div>
+
+    <div class="donation-card">
+      <h3><i class="fas fa-briefcase"></i> Internship</h3>
+      <label for="org-intern">Choose Organization:</label>
+      <select id="org-intern">
+        <option>CareerAid</option>
+        <option>FutureBridge</option>
+      </select>
+
+      <label for="amt-intern">Select Amount:</label>
+      <select id="amt-intern">
+        <option>₹500</option>
+        <option>₹1000</option>
+        <option>₹1500</option>
+        <option>₹2000</option>
+        <option>₹2500</option>
+      </select>
+
+      <button class="donate-btn">Donate</button>
+      <a class="org-link" href="internship-orgs.html">About Organizations</a>
+    </div>
+  </div>
+</div>
+
+      </section>
+    </div>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAK7LnoVb-bd164C4qp9AatgXNn9umB3dk",
+    authDomain: "fundraise-aed0c.firebaseapp.com",
+    projectId: "fundraise-aed0c",
+    storageBucket: "fundraise-aed0c.appspot.com",
+    messagingSenderId: "396650300704",
+    appId: "1:396650300704:web:0f03ff102be69deba38345",
+    measurementId: "G-H6CTQ66QGW"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const q = query(collection(db, "registrations"), orderBy("timestamp", "desc"), limit(1));
+  const snapshot = await getDocs(q);
+
+  
+  snapshot.forEach(doc => {
+  const data = doc.data();
+  const name = data.name || "Donator";
+  const cleanedName = name.replace(/\s+/g, '').toUpperCase();
+  const currentYear = new Date().getFullYear();
+  const shortId = doc.id.slice(-3).toUpperCase();  // Last 3 chars of doc ID
+  const referral = `${cleanedName}-${currentYear}-${shortId}`;
+
+  document.querySelector("#user-name").textContent = name;
+  document.querySelector("#ref-code").textContent = referral;
+});
+
+
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.classList.toggle("show");
+  }
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("collapsed");
+  }
+
+
+  window.onclick = function(e) {
+    if (!e.target.matches('.admin-icon')) {
+      const dropdowns = document.getElementsByClassName("dropdown");
+      for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].classList.remove('show');
+      }
+    }
+  };
+</script>
+</body>
+</html>

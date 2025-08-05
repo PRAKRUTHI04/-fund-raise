@@ -1,0 +1,401 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f6fa;
+}
+
+.main-container {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #01796F; /* Pine Green */
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  transition: width 0.3s;
+  position: relative;
+}
+
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed span {
+  display: none;
+}
+
+.sidebar .toggle-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 40px;
+}
+
+.sidebar ul li {
+  padding: 15px 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 6px;
+}
+
+.sidebar ul li:hover {
+  background-color: #218838;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #28a745, #00b894);
+  padding: 15px 30px;
+  color: white;
+}
+
+/* Overwrite navbar to pine green when .pine is applied */
+.navbar.pine {
+  background: #01796F !important;
+}
+
+.site-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.admin-menu {
+  position: relative;
+}
+
+.admin-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-width: 120px;
+  z-index: 10;
+}
+
+.dropdown a {
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+.show {
+  display: block;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard {
+  padding: 30px;
+}
+
+.dashboard h1 {
+  color: #2c3e50;
+}
+
+.dashboard p {
+  font-size: 18px;
+  color: #34495e;
+  margin: 10px 0;
+}
+
+.rewards {
+  margin-top: 30px;
+}
+
+.rewards h2 {
+  color: #27ae60;
+}
+
+.rewards ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+.rewards li {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+/* Profile Styles */
+.profile-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.profile-row label {
+  font-weight: 600;
+  color: #2c3e50;
+  width: 40%;
+}
+
+.profile-row span {
+  color: #34495e;
+  width: 60%;
+  text-align: right;
+}
+
+/* Back arrow on profile page */
+.back-arrow {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  margin-right: 20px;
+}
+.donation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.donation-card {
+  flex: 1 1 250px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  min-width: 230px;
+}
+
+.donation-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.donation-card label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+.donation-card select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.donation-card p {
+  font-size: 16px;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.donation-card button {
+  width: 100%;
+  padding: 10px;
+  background-color: #01796F;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.donation-card button:hover {
+  background-color: #02675f;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.intern-info {
+  flex: 1 1 50%;
+}
+
+.rewards {
+  flex: 1 1 40%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rewards h2 {
+  color: #27ae60;
+  margin-top: 0;
+}
+
+.rewards ul {
+  list-style: square;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.rewards li {
+  font-size: 16px;
+  margin: 8px 0;
+}
+/* Append this to your existing style.css */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.intern-info {
+  flex: 1;
+}
+
+.rewards {
+  flex: 1;
+  margin-top: 0;
+}
+
+.rewards ul {
+  list-style: square;
+  padding-left: 20px;
+  font-size: 16px;
+}
+
+.rewards li {
+  margin: 8px 0;
+}
+
+.donation-description {
+  font-size: 16px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.org-link {
+  color: #00695c;
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.donation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: flex-start;
+}
+
+.donation-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: calc(50% - 30px);
+  box-sizing: border-box;
+}
+
+.donation-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.donation-card label {
+  display: block;
+  font-weight: 500;
+  margin: 8px 0 5px;
+}
+
+.donation-card select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.donation-card p {
+  color: #27ae60;
+  font-weight: 600;
+  margin: 5px 0 15px;
+}
+
+.donation-card button {
+  background-color: #00695c;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.donation-card button:hover {
+  background-color: #004d40;
+}
